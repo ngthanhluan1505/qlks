@@ -2,7 +2,7 @@ import 'package:mysql1/mysql1.dart';
 
 class MySQL {
   final String _host = '10.0.2.2',
-      _user = 'luan',
+      _user = 'nghi',
       _passWord = '1234',
       _dbName = 'quanlykhachsan';
 

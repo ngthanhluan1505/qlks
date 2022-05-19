@@ -1,10 +1,9 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
 
-import 'package:flutter/cupertino.dart';
 import 'package:hotelapp/database/my_sql.dart';
 import 'package:mysql1/mysql1.dart';
 
-class TypeRoom {
+class LoaiPhong {
   final int _ma_lp;
   Blob? _ten_lp;
   int? _sogiuong;
@@ -21,7 +20,7 @@ class TypeRoom {
   Blob? get gioithieu => _gioithieu;
   List<Blob>? get hinhanh => _hinhanh;
 
-  TypeRoom(this._ma_lp,
+  LoaiPhong(this._ma_lp,
       [this._ten_lp,
       this._sogiuong,
       this._kichthuoc,
@@ -29,16 +28,16 @@ class TypeRoom {
       this._gioithieu,
       this._hinhanh]);
 
-  static Future<List<TypeRoom>> getTypeRoomList() async {
-    List<TypeRoom> result = [];
+  static Future<List<LoaiPhong>> getTypeRoomList() async {
+    List<LoaiPhong> result = [];
     MySQL db = MySQL();
     var conn = await db.connectDB();
     String sql = 'SELECT * FROM `tbl_loaiphong`';
     try {
       await conn.query(sql).then((rs) async {
         for (var row in rs) {
-          TypeRoom typeRoom =
-              TypeRoom(row[0], row[1], row[2], row[3], row[4], row[5], []);
+          LoaiPhong typeRoom =
+              LoaiPhong(row[0], row[1], row[2], row[3], row[4], row[5], []);
           String sql2 =
               'SELECT ha.ten_hinhanh FROM `tbl_loaiphong` lp JOIN `tbl_hinhanh` ha ON lp.ma_lp=ha.ma_lp WHERE lp.ma_lp=' +
                   typeRoom._ma_lp.toString();
@@ -64,9 +63,9 @@ class TypeRoom {
     return result;
   }
 
-  static TypeRoom timLoaiPhongTheoMa(
-      int ma_lp, List<TypeRoom> danhsachloaiphong) {
-    TypeRoom rs = TypeRoom(-1);
+  static LoaiPhong timLoaiPhongTheoMa(
+      int ma_lp, List<LoaiPhong> danhsachloaiphong) {
+    LoaiPhong rs = LoaiPhong(-1);
     for (int i = 0; i < danhsachloaiphong.length; i++) {
       if (ma_lp == danhsachloaiphong[i]._ma_lp) {
         rs = danhsachloaiphong[i];

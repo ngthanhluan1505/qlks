@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotelapp/data.dart';
-import 'package:hotelapp/model/type_room.dart';
-import 'package:hotelapp/model/user.dart';
+import 'package:hotelapp/model/loai_phong.dart';
+import 'package:hotelapp/model/khach_hang.dart';
 import 'package:hotelapp/style.dart';
-import 'package:hotelapp/view/home_page.dart';
-import 'package:hotelapp/model/yeucaudatphong.dart';
+import 'package:hotelapp/view/trangchu.dart';
+import 'package:hotelapp/model/yeucau_datphong.dart';
 import 'package:mysql1/mysql1.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -33,6 +33,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // ignore: unused_field
   late TwilioFlutter _twilioFlutter;
   late String _sdt;
   late String _mxn;
@@ -238,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                           bool f2 = _mxn == khachhang!.ma_xacnhan.toString();
                           if (f2) {
                             _inputEn = true;
-                            User.writing(
+                            KhachHang.writing(
                                 "1 ${khachhang?.sodienthoai_kh.toString()}");
                             Navigator.pop(context);
 
@@ -312,7 +313,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<bool> _kiemtraKh(String sdt) async {
     bool f = false;
-    khachhang = await User.findUserBySDT(sdt);
+    khachhang = await KhachHang.findUserBySDT(sdt);
     if (khachhang?.ma_kh != -1) {
       f = true;
     }
@@ -327,15 +328,16 @@ class _LoadingUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen.withScreenFunction(
       splashTransition: SplashTransition.slideTransition,
+      //  pageTransitionType: PageTransitionType,
       splash: const Image(
         image: AssetImage('assets/images/loading.gif'),
         fit: BoxFit.fill,
       ),
       screenFunction: () async {
-        danhSachLoaiPhong = await TypeRoom.getTypeRoomList();
+        danhSachLoaiPhong = await LoaiPhong.getTypeRoomList();
         listYeuCauDatPhong =
             await YeuCauDatPhong.findMaKhachHang(khachhang!.ma_kh);
-        danhSachLoaiPhong = await TypeRoom.getTypeRoomList();
+        danhSachLoaiPhong = await LoaiPhong.getTypeRoomList();
         listYeuCauDatPhong =
             await YeuCauDatPhong.findMaKhachHang(khachhang!.ma_kh);
         return const HomePage();

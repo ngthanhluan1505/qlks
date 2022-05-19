@@ -1,8 +1,8 @@
-import 'package:hotelapp/model/type_room.dart';
-import 'package:hotelapp/model/user.dart';
-import 'package:hotelapp/model/yeucaudatphong.dart';
+import 'package:hotelapp/model/loai_phong.dart';
+import 'package:hotelapp/model/khach_hang.dart';
+import 'package:hotelapp/model/yeucau_datphong.dart';
 
 String pathImage = "assets/images/";
-List<TypeRoom> danhSachLoaiPhong = [];
-User? khachhang;
+List<LoaiPhong> danhSachLoaiPhong = [];
+KhachHang? khachhang;
 List<YeuCauDatPhong>? listYeuCauDatPhong;

@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
 
 import 'package:hotelapp/database/my_sql.dart';
 import 'package:mysql1/mysql1.dart';
@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'dart:async';
 
-class User {
+class KhachHang {
   final int _ma_kh;
   Blob? _hoten_kh;
   Blob? _cancuoc_kh;
@@ -24,7 +24,7 @@ class User {
     _ma_xacnhan = otp;
   }
 
-  User(this._ma_kh,
+  KhachHang(this._ma_kh,
       [this._hoten_kh,
       this._cancuoc_kh,
       this._sodienthoai_kh,
@@ -49,8 +49,8 @@ class User {
     storage.delete(filename);
   }
 
-  static Future<User> findUserBySDT(String sdt) async {
-    User us = User(-1);
+  static Future<KhachHang> findUserBySDT(String sdt) async {
+    KhachHang us = KhachHang(-1);
     MySQL db = MySQL();
     var conn = await db.connectDB();
     String sql =
@@ -58,7 +58,7 @@ class User {
     try {
       await conn.query(sql).then((rs) async {
         for (var row in rs) {
-          us = User(row[0], row[1], row[2], row[3], row[4]);
+          us = KhachHang(row[0], row[1], row[2], row[3], row[4]);
         }
       });
     } catch (e) {

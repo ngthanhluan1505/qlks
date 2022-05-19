@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hotelapp/data.dart';
 import 'package:hotelapp/database/my_sql.dart';
-import 'package:hotelapp/model/type_room.dart';
+import 'package:hotelapp/model/loai_phong.dart';
 import 'package:hotelapp/style.dart';
 
 Color _mainColor = Colors.black;
@@ -17,7 +17,7 @@ Color _cardColor = HexColor.fromHex("#F4EDF2");
 class Reservations extends StatefulWidget {
   const Reservations(this.typeRoom, {Key? key}) : super(key: key);
 
-  final TypeRoom typeRoom;
+  final LoaiPhong typeRoom;
 
   @override
   // ignore: no_logic_in_create_state
@@ -25,7 +25,7 @@ class Reservations extends StatefulWidget {
 }
 
 class _ReservationsState extends State<Reservations> {
-  final TypeRoom typeRoom;
+  final LoaiPhong typeRoom;
   _ReservationsState(this.typeRoom);
 
   late int maso_yeucau;

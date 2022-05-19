@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hotelapp/model/type_room.dart';
+import 'package:hotelapp/model/loai_phong.dart';
 import 'package:hotelapp/style.dart';
-import 'package:hotelapp/view/booking_form.dart';
-import 'package:hotelapp/view/searching.dart';
+import 'package:hotelapp/view/form_datphong.dart';
+import 'package:hotelapp/view/timkiem.dart';
 
 Color _mainColor = Colors.black;
 Color _backgroundColor = Colors.white;
@@ -13,7 +13,7 @@ Color _mainbodyColor = HexColor.fromHex("#F4EDF2");
 
 class RoomInfo extends StatelessWidget {
   const RoomInfo(this.typeRoom, {Key? key}) : super(key: key);
-  final TypeRoom typeRoom;
+  final LoaiPhong typeRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -90,60 +90,76 @@ class RoomInfo extends StatelessWidget {
       color: _mainbodyColor,
       child: Column(
         children: [
-          SizedBox(
-              width: Responsive.width(80, context),
-              height: Responsive.height(30, context),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child:
-                    Image.network(imgList[0], fit: BoxFit.cover, width: 1000.0),
-              )),
-          SizedBox(
-            height: Responsive.height(2, context),
-          ),
-          SizedBox(
-              width: Responsive.width(80, context),
-              height: Responsive.height(30, context),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child:
-                    Image.network(imgList[0], fit: BoxFit.cover, width: 1000.0),
-              )),
-          SizedBox(
-            height: Responsive.height(1, context),
-          ),
-          Padding(
-            padding: EdgeInsets.all(Responsive.height(1, context)),
-            child: Text(
-              "${typeRoom.sogiong} Giường - ${typeRoom.kichthuoc}",
-              style: TextStyle(
-                  fontSize: Responsive.height(2.5, context),
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(Responsive.height(1, context)),
-            child: Text(
-              "Giá: ${typeRoom.gia_lp} VNĐ / một đêm",
-              style: TextStyle(fontSize: Responsive.height(2, context)),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                left: Responsive.width(3, context),
-                right: Responsive.width(3, context),
-                top: Responsive.height(1, context),
-                bottom: Responsive.height(1, context)),
-            child: Text(
-              typeRoom.gioithieu.toString(),
-              style: TextStyle(
-                fontSize: Responsive.height(2, context),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          SizedBox(
-            height: Responsive.height(2, context),
+          Expanded(
+            child: Container(
+                padding: EdgeInsets.all(Responsive.height(2, context)),
+                alignment: Alignment.center,
+                child: ListView(
+                  children: [
+                    SizedBox(
+                        width: Responsive.width(80, context),
+                        height: Responsive.height(30, context),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          child: Image.network(imgList[0],
+                              fit: BoxFit.cover, width: 1000.0),
+                        )),
+                    SizedBox(
+                      height: Responsive.height(2, context),
+                    ),
+                    SizedBox(
+                        width: Responsive.width(80, context),
+                        height: Responsive.height(30, context),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          child: Image.network(imgList[0],
+                              fit: BoxFit.cover, width: 1000.0),
+                        )),
+                    SizedBox(
+                      height: Responsive.height(2, context),
+                    ),
+                    Center(
+                      child: Text(
+                        "${typeRoom.sogiong} Giường - ${typeRoom.kichthuoc}",
+                        style: TextStyle(
+                            fontSize: Responsive.height(2.5, context),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Responsive.height(1, context),
+                    ),
+                    Center(
+                      child: Text(
+                        "Giá: ${typeRoom.gia_lp} VNĐ / một đêm",
+                        style:
+                            TextStyle(fontSize: Responsive.height(2, context)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Responsive.height(1, context),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: Responsive.width(3, context),
+                          right: Responsive.width(3, context),
+                          top: Responsive.height(1, context),
+                          bottom: Responsive.height(1, context)),
+                      child: Text(
+                        typeRoom.gioithieu.toString(),
+                        style: TextStyle(
+                          fontSize: Responsive.height(2, context),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(
+                      height: Responsive.height(2, context),
+                    ),
+                  ],
+                )),
           ),
           Padding(
             padding: EdgeInsets.all(Responsive.height(1, context)),
